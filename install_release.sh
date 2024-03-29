@@ -25,7 +25,7 @@ echo "\n[platform-tools] Downloading platform-tools..."
 wget $PLATFORM_TOOLS_LINUX_URL -qO $PLATFORM_TOOLS.zip
 
 echo "[platform-tools] Extracting file..."
-unzip -p $PLATFORM_TOOLS.zip ./$PLATFORM_TOOLS/adb > adb
+unzip -p $PLATFORM_TOOLS.zip $PLATFORM_TOOLS/adb > adb
 rm $PLATFORM_TOOLS.zip
 
 cd ..
