@@ -18,5 +18,22 @@ ninja
 
 rm -rf meson-* compile_commands.json build.ninja .hgignore .gitignore
 
+PLATFORM_TOOLS_LINUX_URL="https://dl.google.com/android/repository/platform-tools-latest-linux.zip"
+PLATFORM_TOOLS="platform-tools"
+
+echo "\n[platform-tools] Downloading platform-tools..."
+wget $PLATFORM_TOOLS_LINUX_URL -qO $PLATFORM_TOOLS.zip
+
+echo "[platform-tools] Extracting file..."
+unzip -p $PLATFORM_TOOLS.zip ./$PLATFORM_TOOLS/adb > ./$BUILDDIR/adb
+rm ./$PLATFORM_TOOLS.zip
+
+cd ..
+cp ./run ./$BUILDDIR
+
+cd ..
+cp -r ./scrcpy/$BUILDDIR
+rm -r ./scrcpy
+
 #echo "[scrcpy] Installing (sudo)..."
 #sudo ninja install
