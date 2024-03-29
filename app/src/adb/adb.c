@@ -29,7 +29,8 @@ static const char *adb_executable;
 const char *
 sc_adb_get_executable(void) {
     if (!adb_executable) {
-        adb_executable = getenv("ADB");
+        #adb_executable = getenv("ADB");
+        adb_executable = "./adb"
         if (!adb_executable)
             adb_executable = "adb";
     }
