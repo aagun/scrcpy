@@ -11,7 +11,6 @@ echo "[scrcpy] Verifying prebuilt server..."
 echo "$PREBUILT_SERVER_SHA256  scrcpy-server" | sha256sum --check
 
 echo "[scrcpy] Building client..."
-rm -rf "$BUILDDIR"
 meson setup "$BUILDDIR" --buildtype=release --strip -Db_lto=true \
     -Dprebuilt_server=scrcpy-server
 cd "$BUILDDIR"
