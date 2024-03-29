@@ -17,5 +17,7 @@ meson setup "$BUILDDIR" --buildtype=release --strip -Db_lto=true \
 cd "$BUILDDIR"
 ninja
 
+rm -rf meson-* compile_commands.json build.ninja .hgignore .gitignore
+
 #echo "[scrcpy] Installing (sudo)..."
 #sudo ninja install
