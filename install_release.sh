@@ -9,9 +9,9 @@ echo -n "[scrcpy] Downloading prebuilt server..."
 wget "$PREBUILT_SERVER_URL" -qO scrcpy-server
 echo "Done"
 
-echo "[scrcpy] Verifying prebuilt server..."
-echo "$PREBUILT_SERVER_SHA256  scrcpy-server" | sha256sum --check
-echo "Done"
+echo -n "[scrcpy] Verifying prebuilt server... "
+echo -n "$PREBUILT_SERVER_SHA256  scrcpy-server" | sha256sum --check
+echo " Done"
 
 echo "[scrcpy] Building client..."
 meson setup "$BUILDDIR" --buildtype=release --strip -Db_lto=true \
@@ -49,7 +49,7 @@ echo -n "[scrcpy] Copying $BUILDDIR to current directory... "
 cd .. && cp -r scrcpy/$BUILDDIR ./
 echo "Done"
 
-echo -n "[scrcpy] Removing source code"
+echo -n "[scrcpy] Removing source code... "
 rm -rf scrcpy
 echo "Done"
 
