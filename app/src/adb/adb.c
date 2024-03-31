@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <limits.h>
 
 #include "adb_device.h"
 #include "adb_parser.h"
@@ -26,23 +24,20 @@
  */
 #define SC_ADB_COMMAND(...) { sc_adb_get_executable(), __VA_ARGS__, NULL }
 
+
+static int ends_with(const char *str, const char *suffix) {
+    size_t str_len = strlen(str);
+    size_t suffix_len = strlen(suffix);
+
+    return (str_len >= suffix_len) && (!memcmp(str + str_len - suffix_len, suffix, suffix_len));
+}
+
 static const char *adb_executable;
 
 const char *
 sc_adb_get_executable(void) {
     if (!adb_executable) {
-        // adb_executable = getenv("ADB");
-        char cwd[PATH_MAX];  // Allocate enough space for the path (POSIX standard)
-        if (getcwd(cwd, sizeof(cwd)) != NULL) {
-            if (strcmp(strrchr(cwd, '/'), "build-auto") != 0) {
-                strcat(cwd, "/build-auto");
-            }
-            strcat(cwd, "/adb");
-            printf("Current directory: %s\n", cwd);
-        } else {
-            perror("getcwd");  // Print error message if it fails
-        }
-        adb_executable = cwd;
+        adb_executable = getenv("ADB");
         if (!adb_executable)
             adb_executable = "adb";
     }
