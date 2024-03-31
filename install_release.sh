@@ -41,11 +41,11 @@ echo -n "[platform-tools] Removing $PLATFORM_TOOLS.zip... "
 rm $PLATFORM_TOOLS.zip
 echo "Done"
 
-ehco -n "[scrcpy] Copying run file into $BUILDDIR... "
+echo -n "[scrcpy] Copying run file into $BUILDDIR... "
 cd .. && cp ./run ./$BUILDDIR
 echo "Done"
 
-ehco -n "[scrcpy] Copying $BUILDDIR to current directory... "
+echo -n "[scrcpy] Copying $BUILDDIR to current directory... "
 cd .. && cp -r scrcpy/$BUILDDIR ./
 echo "Done"
 
